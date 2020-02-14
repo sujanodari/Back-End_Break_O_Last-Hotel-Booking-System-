@@ -28,6 +28,35 @@ var storage = multer.diskStorage(
 //multer is used to upload the file
 var upload = multer( { storage: storage } );
 
+var storage1 = multer.diskStorage(
+    {
+        destination: "./public/room/",
+        filename: function ( req, file, cb ){
+            let date_ob = new Date().valueOf();
+            cb( null, date_ob+file.originalname);
+        }
+    }
+);
+
+//multer is used to upload the file
+var upload1 = multer( { storage: storage1 } );
+app.post('/api/v1/hotel/rooms/image',upload.single("roomImage"),function(req,res){
+    if(req.file === undefined|null){
+        res.status(500);
+        res.json({
+        status:500,
+        messsage:"Room image cannot be empty"
+            });
+            
+    }
+    else{
+        res.status(201);
+        res.json({
+        status:201,
+        filename:req.file.filename
+            });
+    }
+});
 
 
 var swaggerJSDoc=require('swagger-jsdoc');//actual for documentation
@@ -201,10 +230,11 @@ app.post('/api/v1/users/signup',registrationController.registrationValidation,re
  *     description: no-content
  */
 app.post("/api/v1/users/signin",loginController.loginValidator,loginController.chkLogin,loginController.jwtTokenGen,loginController.login);
+app.post("/api/v1/admin/signin",loginController.adminValidation,loginController.jwtTokenGen,loginController.login);
 
 /**
  * @swagger
- * /api/v1/users/detail:
+ * /api/v1/users:
  *  get:
  *   tags:
  *    - UserDetail
@@ -225,12 +255,12 @@ app.post("/api/v1/users/signin",loginController.loginValidator,loginController.c
  *    403:
  *     description: unauthorized
  */
-app.get("/api/v1/users/detail",userDetail.verifyToken,userDetail.getUser);
+app.get("/api/v1/users",userDetail.verifyToken,userDetail.getUser);
 
 
 /**
  * @swagger
- * /api/v1/users/update/password:
+ * /api/v1/users:
  *  put:
  *   tags:
  *    - UpdatePassword
@@ -264,14 +294,14 @@ app.get("/api/v1/users/detail",userDetail.verifyToken,userDetail.getUser);
  *    403:
  *     description: unauthorized
  */
-app.put("/api/v1/users/update/password",userDetail.verifyToken,userDetail.passwordValidation,registrationController.hashPassword,userDetail.updatePassword);
+app.put("/api/v1/users",userDetail.verifyToken,userDetail.passwordValidation,registrationController.hashPassword,userDetail.updatePassword);
 
 
 
 
 /**
  * @swagger
- * /api/v1/hotel/room:
+ * /api/v1/hotel/rooms:
  *  post:
  *   summary: Hotel Addition.
  *   tags:
@@ -314,13 +344,13 @@ app.put("/api/v1/users/update/password",userDetail.verifyToken,userDetail.passwo
  *    201:
  *     description: Room is Added
  *    409:
- *     description: Already registered
+ *     description: Already Added
  *    500:
  *     description: Internal Error
  *    204:
  *     description: no-content
  */
-app.post('/api/v1/hotel/room',hotelController.roomValidation,hotelController.addHotel);
+app.post('/api/v1/hotel/rooms',hotelController.roomValidation,hotelController.addHotel);
 
 
 /**
@@ -349,7 +379,7 @@ app.get('/api/v1/hotel/rooms',hotelController.getRooms);
 
 /**
  * @swagger
- * /api/v1/hotel/room/book:
+ * /api/v1/hotel/rooms/book:
  *  post:
  *   tags:
  *    - RoomBook
@@ -386,7 +416,7 @@ app.get('/api/v1/hotel/rooms',hotelController.getRooms);
  *    403:
  *     description: unauthorized
  */
-app.post('/api/v1/hotel/room/book',userDetail.verifyToken,hotelController.getUserId,hotelController.bookValidation,hotelController.bookRoom);
+app.post('/api/v1/hotel/rooms/book',userDetail.verifyToken,hotelController.getUserId,hotelController.bookValidation,hotelController.bookRoom);
 
 
 
@@ -418,7 +448,7 @@ app.get('/api/v1/hotel/rooms/book',userDetail.verifyToken,hotelController.getUse
 
 /**
  * @swagger
- * /api/v1/hotel/rooms/book/delete/{id}:
+ * /api/v1/hotel/rooms/{id}:
  *  delete:
  *   tags:
  *    - DeleteBook
@@ -442,12 +472,12 @@ app.get('/api/v1/hotel/rooms/book',userDetail.verifyToken,hotelController.getUse
  *    403:
  *     description: unauthorized
  */
-app.delete('/api/v1/hotel/rooms/book/delete/:id',userDetail.verifyToken,hotelController.deleteBook);
+app.delete('/api/v1/hotel/rooms/:id',userDetail.verifyToken,hotelController.deleteBook);
 
 
 /**
  * @swagger
- * /api/v1/users/update/forget/password:
+ * /api/v1/users/forget:
  *  put:
  *   summary: User Password Recover.
  *   tags:
@@ -480,13 +510,13 @@ app.delete('/api/v1/hotel/rooms/book/delete/:id',userDetail.verifyToken,hotelCon
  *    404:
  *     description: user not found
  */
-app.put("/api/v1/users/update/forget/password",userDetail.passwordValidation,registrationController.hashPassword,userDetail.forgetPassword);
+app.put("/api/v1/users/forget",userDetail.passwordValidation,registrationController.hashPassword,userDetail.forgetPassword);
 
 
 
 /**
  * @swagger
- * /api/v1/users/delete/user:
+ * /api/v1/users:
  *  delete:
  *   tags:
  *    - User
@@ -507,7 +537,7 @@ app.put("/api/v1/users/update/forget/password",userDetail.passwordValidation,reg
  *    403:
  *     description: unauthorized
  */
-app.delete('/api/v1/users/delete/user',userDetail.verifyToken,userDetail.deleteUser);
+app.delete('/api/v1/users',userDetail.verifyToken,userDetail.deleteUser);
 
 //error handling middleware first parm err
 app.use(function(err,req,res,next){

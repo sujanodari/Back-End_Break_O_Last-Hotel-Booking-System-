@@ -125,7 +125,7 @@ describe("Users",function(){
         it("it should get user detail, provided token is authorized", function(done) {
             chai
               .request(server)
-              .get("/api/v1/users/detail") //then get the data
+              .get("/api/v1/users") //then get the data
               .set("Authorization", "Bearer " + Token) //set the header first
               .end(function(err, res) {
                 res.should.have.status(200);
@@ -144,7 +144,7 @@ describe("Users",function(){
           it("it should not get user detail, provided token is not authorized", function(done) {
               chai
                 .request(server)
-                .get("/api/v1/users/detail") //then get the data
+                .get("/api/v1/users") //then get the data
                 .set("Authorization", "Bearer " + Token+"sujan") //set the header first
                 .end(function(err, res) {
                   res.should.have.status(403);
@@ -165,7 +165,7 @@ describe("Users",function(){
             it("it should get user password updated, provided token is  authorized and new password is entered", function(done) {
                 chai
                   .request(server)
-                  .put("/api/v1/users/update/password") //then get the data
+                  .put("/api/v1/users") //then get the data
                   .set("content-type","application/x-www-form-urlencoded")
                   .set("Authorization", "Bearer " + Token) //set the header first
                   .send({
@@ -188,7 +188,7 @@ describe("Users",function(){
             it("it should not get user password updated, provided token is  unauthorized and new password is entered", function(done) {
                 chai
                   .request(server)
-                  .put("/api/v1/users/update/password") //then get the data
+                  .put("/api/v1/users") //then get the data
                   .set("content-type","application/x-www-form-urlencoded")
                   .set("Authorization", "Bearer " + Token+"sujan") //set the header first
                   .send({
@@ -213,7 +213,7 @@ describe("Users",function(){
           it("it should add a hotel, provided hotel name and room number is unique and address, no of bed, phone, description and room image location is entered",function(done){
               //now request api
               chai.request(server)
-              .post("/api/v1/hotel/room")
+              .post("/api/v1/hotel/rooms")
               .set("content-type","application/x-www-form-urlencoded")
               .send({
                   
@@ -243,7 +243,7 @@ describe("Users",function(){
           it("it should not add a hotel, provided hotel name and room number is not unique and address, no of bed, phone, description and room image location is entered",function(done){
               //now request api
               chai.request(server)
-              .post("/api/v1/hotel/room")
+              .post("/api/v1/hotel/rooms")
               .set("content-type","application/x-www-form-urlencoded")
               .send({
                   
