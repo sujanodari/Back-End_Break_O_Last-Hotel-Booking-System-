@@ -52,9 +52,14 @@
                     next();  
                 }).catch(function(err){
                     next("Hassing error");
+
                 });  
             } else{
-                res.end("User login Unsucessfull");
+                 res.status(204);
+                res.json({
+                    status:"Unsuccessfull",
+                    code:"204",
+                });
             }
         
         }

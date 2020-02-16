@@ -20,7 +20,7 @@ describe("Users",function(){
             "profileImage":"sujan.jpg",
             "gender":"male",
             "email":"sujanodari@gmail.com",
-            "phone":"9876543210",
+            "phone":"1234567890123456",
             "address":"Gatthaghar"
         })
         .end(function(err,res){
@@ -50,7 +50,7 @@ describe("Users",function(){
             "profileImage":"sujan.jpg",
             "gender":"male",
             "email":"sujanodari@gmail.com",
-            "phone":"9876543210",
+            "phone":"1234567890123456",
             "address":"Gatthaghar"
         })
         .end(function(err,res){
@@ -75,7 +75,7 @@ describe("Users",function(){
         .set("content-type","application/x-www-form-urlencoded")
         .send({
             
-            "phone":"9876543210",
+            "phone":"1234567890123456",
             "password":"sujan"
         })
         .end(function(err,res){
@@ -102,7 +102,7 @@ describe("Users",function(){
           .set("content-type","application/x-www-form-urlencoded")
           .send({
               
-              "phone":"98765436219",
+              "phone":"1234567890123",
               "password":"sujan"
           })
           .end(function(err,res){
@@ -118,7 +118,7 @@ describe("Users",function(){
 
 
 
-var Token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ijk4NzY1NDMyMTAiLCJ1c2VybGV2ZWwiOiJzdXBlcmFkbWluIiwiaWF0IjoxNTgwOTI4NzE3LCJleHAiOjE1ODA5NjQ3MTd9.5EjP4EICY_zeWhwJCDbzF0BecRm4GxFYml3z3L3rk_A";
+var Token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ijk4MDQ5NjYzNzciLCJ1c2VybGV2ZWwiOiJzdXBlcmFkbWluIiwiaWF0IjoxNTgxODU2NjU3LCJleHAiOjE1ODE4OTI2NTd9.NaKMs-tGKnqufNomR78SgvVvRmXnipgVNmj0-RMWwh8";
 describe("Users",function(){
     describe("get user detail test",function(){
   
@@ -218,11 +218,11 @@ describe("Users",function(){
               .send({
                   
                   "hotelName":"Sunsine",
-                  "roomNo":"202",
+                  "roomNo":"999",
                   "description":"Hightly decorated room only in RS.5000",
                   "address":"sujan.jpg",
-                  "noOfBed":"1",
-                  "phone":"9876543210",
+                  "noOfBed":"2",
+                  "phone":"9876503210",
                   "roomImage":"12.jpg"
               })
               .end(function(err,res){
@@ -247,13 +247,13 @@ describe("Users",function(){
               .set("content-type","application/x-www-form-urlencoded")
               .send({
                   
-                  "hotelName":"Sunsine",
-                  "roomNo":"202",
-                  "description":"Hightly decorated room only in RS.5000",
-                  "address":"sujan.jpg",
-                  "noOfBed":"1",
-                  "phone":"9876543210",
-                  "roomImage":"12.jpg"
+                "hotelName":"Sunsine",
+                "roomNo":"999",
+                "description":"Hightly decorated room only in RS.5000",
+                "address":"sujan.jpg",
+                "noOfBed":"2",
+                "phone":"9876503210",
+                "roomImage":"12.jpg"
               })
               .end(function(err,res){
                 //res.should.have,thinks,like
@@ -284,29 +284,3 @@ describe("Users",function(){
         }
         );
       });
-
-// describe("Users",function(){
-//   describe("POST user delete test",function(){
-// id =10;
-//     it("it should delete a single user, provided id and token is entered",function(done){
-//         //now request api
-//         chai.request(server)
-//         .post("/users/"+id)
-//         // .set("content-type","application/x-www-form-urlencoded")
-//         .set("Authorization","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InM4N3VnMTI1IiwidXNlcmxldmVsIjoic3VwZXJhZG1pbiIsImlhdCI6MTU3NzA2OTc3OSwiZXhwIjoxNTc3MTA1Nzc5fQ.jwIkFp-caFRFsHP1Iylqo_yFPGns2vzGDEyHMPKXE6o")
-//         // .send({
-            
-//         //     "id":"9"
-            
-//         // })
-//         .end(function(err,res){
-//           //res.should.have,thinks,like
-//           //res.should.be
-//           res.should.have.status(200);
-//           res.body.should.have.property("message").eql("You have Sucessfully logged in");
-//           done();
-//         });
-//     });
-//   }
-//   );
-// });

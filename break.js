@@ -475,6 +475,9 @@ app.get('/api/v1/hotel/rooms/book',userDetail.verifyToken,hotelController.getUse
 app.delete('/api/v1/hotel/rooms/:id',userDetail.verifyToken,hotelController.deleteBook);
 
 
+//delete room 
+app.delete('/api/v1/admin/rooms/:id',userDetail.verifyToken,hotelController.deleteRoom);
+
 /**
  * @swagger
  * /api/v1/users/forget:
