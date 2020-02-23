@@ -20,7 +20,7 @@ describe("Users",function(){
             "profileImage":"sujan.jpg",
             "gender":"male",
             "email":"sujanodari@gmail.com",
-            "phone":"1234567890123456",
+            "phone":"9817091758",
             "address":"Gatthaghar"
         })
         .end(function(err,res){
@@ -44,14 +44,14 @@ describe("Users",function(){
         .set("content-type","application/x-www-form-urlencoded")
         .send({
             
-            "username":"Sujan Odari",
-            "password":"sujan",
-            "cPassword":"sujan",
-            "profileImage":"sujan.jpg",
-            "gender":"male",
-            "email":"sujanodari@gmail.com",
-            "phone":"1234567890123456",
-            "address":"Gatthaghar"
+          "username":"Sujan Odari",
+          "password":"sujan",
+          "cPassword":"sujan",
+          "profileImage":"sujan.jpg",
+          "gender":"male",
+          "email":"sujanodari@gmail.com",
+          "phone":"9817091758",
+          "address":"Gatthaghar"
         })
         .end(function(err,res){
           //res.should.have,thinks,like
@@ -75,7 +75,7 @@ describe("Users",function(){
         .set("content-type","application/x-www-form-urlencoded")
         .send({
             
-            "phone":"1234567890123456",
+            "phone":"9817091758",
             "password":"sujan"
         })
         .end(function(err,res){
@@ -102,7 +102,7 @@ describe("Users",function(){
           .set("content-type","application/x-www-form-urlencoded")
           .send({
               
-              "phone":"1234567890123",
+              "phone":"9817091750",
               "password":"sujan"
           })
           .end(function(err,res){
@@ -118,7 +118,7 @@ describe("Users",function(){
 
 
 
-var Token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ijk4MDQ5NjYzNzciLCJ1c2VybGV2ZWwiOiJzdXBlcmFkbWluIiwiaWF0IjoxNTgxODU2NjU3LCJleHAiOjE1ODE4OTI2NTd9.NaKMs-tGKnqufNomR78SgvVvRmXnipgVNmj0-RMWwh8";
+var Token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ijk4MTcwOTE3NTciLCJ1c2VybGV2ZWwiOiJzdXBlcmFkbWluIiwiaWF0IjoxNTgyNDQwODc3LCJleHAiOjE1ODI0NzY4Nzd9.jPltYV132SfaKkJZoEuLCjkXQwpt4KuC957TxvAzlzQ";
 describe("Users",function(){
     describe("get user detail test",function(){
   
