@@ -16,3 +16,5 @@ APP_PORT=3014              //your port number
 4. For documentation in browser use "yourhost/api-docs".
 
 
+Youtube video Link:
+https://youtu.be/gqT4FX4XQv4
