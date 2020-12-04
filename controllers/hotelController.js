@@ -200,7 +200,33 @@ hotel.booking.findAll({
     });
 
 }
+function deleteRoom(req,res,next){
+    if(req.params.id === null)
+    {
+        res.send("Hotel cannot be empty");
+    }
+    hotel.hotel.destroy({
+        where:{id:req.params.id}
+        }).then(function(result){
+        if(result=== null){
+            next(err);
+        }
+        else{
+            res.status(200);
+            res.json({
+                code:200,
+                status:"success",
+                data:result
+            });
+        }
+        
+        })
+        .catch(function(err){
+            console.log(err);
+        });
+    
 
+}
 function deleteBook(req,res,next){
     if(req.params.id === null)
     {
@@ -229,5 +255,5 @@ function deleteBook(req,res,next){
 
 }
 
-module.exports={getRooms,roomValidation,addHotel,bookRoom,bookValidation,getBook,deleteBook,getUserId};
+module.exports={getRooms,roomValidation,addHotel,bookRoom,deleteRoom,bookValidation,getBook,deleteBook,getUserId};
 

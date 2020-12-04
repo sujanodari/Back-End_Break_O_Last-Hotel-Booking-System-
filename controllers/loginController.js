@@ -13,7 +13,11 @@
             })
             .then(function(result){
                 if(result===null){
-                    res.send("You have not registered, please register first");
+                    res.status(204);
+                    res.json({
+                    status:"Unsuccessfull",
+                    code:"204",
+                    message:"You have not registered, please register first"}); 
                 }
                 else{
                     //console.log(result);
@@ -24,7 +28,23 @@
                 next(err);
             });
         }
-
+        function adminValidation(req,res,next){
+            if(req.body.phone===null){
+                res.send("Phone Number cannot be null");
+            }
+            if(req.body.password===null){
+                res.send("password cannot be null");
+            }
+            if(req.body.phone==="1234" && req.body.password==="sujan"){
+                next();
+            }else {
+                res.status(204);
+                res.json({
+                    status:"Unsuccessfull",
+                    code:"204",
+                });
+            }
+        }
 
         function chkLogin(req,res,next){
             if(req.passwordFromDB !==null){
@@ -32,9 +52,14 @@
                     next();  
                 }).catch(function(err){
                     next("Hassing error");
+
                 });  
             } else{
-                res.end("User login Unsucessfull");
+                 res.status(204);
+                res.json({
+                    status:"Unsuccessfull",
+                    code:"204",
+                });
             }
         
         }
@@ -65,6 +90,6 @@
             }
         }
 
-        module.exports={loginValidator,
+        module.exports={loginValidator,adminValidation,
             chkLogin,jwtTokenGen,login};
         
